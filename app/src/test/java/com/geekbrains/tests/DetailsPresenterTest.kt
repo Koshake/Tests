@@ -53,4 +53,11 @@ class DetailsPresenterTest {
     fun onAttach_test() {
         Assert.assertNotNull(presenter.viewContract)
     }
+
+    @Test
+    fun onDetach_OnAttach() {
+        presenter.onDetach(viewDetailsContract)
+        presenter.onAttach(viewDetailsContract)
+        Assert.assertNotNull(presenter.viewContract)
+    }
 }
