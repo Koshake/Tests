@@ -2,6 +2,7 @@ package com.geekbrains.tests
 
 import com.geekbrains.tests.model.SearchResponse
 import com.geekbrains.tests.model.SearchResult
+import com.geekbrains.tests.presenter.RepositoryContract
 import com.geekbrains.tests.presenter.search.SearchPresenter
 import com.geekbrains.tests.view.search.ViewSearchContract
 import org.junit.Assert
@@ -19,7 +20,7 @@ class SearchPresenterTest {
     private lateinit var presenter: SearchPresenter
 
     @Mock
-    private lateinit var repository: GitHubRepository
+    private lateinit var repository: RepositoryContract
 
     @Mock
     private lateinit var viewContract: ViewSearchContract
