@@ -6,7 +6,10 @@ import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
-import com.geekbrains.tests.R
+import com.geekbrains.tests.*
+import com.geekbrains.tests.TEST_DELAY_MS
+import com.geekbrains.tests.TEST_EDITTEXT_ALGOL
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_ALGOL
 import com.geekbrains.tests.view.search.MainActivity
 import org.hamcrest.Matcher
 import org.junit.Before
@@ -26,13 +29,13 @@ class ActivitySearchEspressoTest {
     fun activitySearch_IsWorking() {
         Espresso.onView(ViewMatchers.withId(R.id.searchEditText)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.searchEditText))
-            .perform(ViewActions.replaceText("algol"), ViewActions.closeSoftKeyboard())
+            .perform(ViewActions.replaceText(TEST_EDITTEXT_ALGOL), ViewActions.closeSoftKeyboard())
         Espresso.onView(ViewMatchers.withId(R.id.searchEditText))
             .perform(ViewActions.pressImeActionButton())
 
         Espresso.onView(ViewMatchers.isRoot()).perform(delay())
         Espresso.onView(ViewMatchers.withId(R.id.totalCountTextView))
-            .check(ViewAssertions.matches(ViewMatchers.withText("Number of results: 2416")))
+            .check(ViewAssertions.matches(ViewMatchers.withText(TEST_NUMBER_OF_RESULTS_ALGOL_REAL)))
     }
 
     private fun delay(): ViewAction? {
@@ -40,7 +43,7 @@ class ActivitySearchEspressoTest {
             override fun getConstraints(): Matcher<View> = ViewMatchers.isRoot()
             override fun getDescription(): String = "wait for $10 seconds"
             override fun perform(uiController: UiController, v: View?) {
-                uiController.loopMainThreadForAtLeast(10000)
+                uiController.loopMainThreadForAtLeast(TEST_DELAY_MS)
             }
         }
     }

@@ -11,7 +11,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.*
-import com.geekbrains.tests.R
+import com.geekbrains.tests.*
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_ALGOL
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_PLUS_1
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_ZERO
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -62,7 +65,7 @@ class BehaviorTest {
     fun test_SearchIsPositive() {
         val editText = uiDevice.findObject(By.res(packageName, "searchEditText"))
 
-        editText.text = "algol"
+        editText.text = TEST_EDITTEXT_ALGOL
 
         val search = uiDevice.findObject(By.res(packageName, "search_button"))
         search.click()
@@ -72,7 +75,7 @@ class BehaviorTest {
             TIMEOUT
         )
 
-        Assert.assertEquals(changedText.text.toString(), "Number of results: 2424")
+        Assert.assertEquals(changedText.text.toString(), TEST_NUMBER_OF_RESULTS_ALGOL)
 
     }
 
@@ -95,14 +98,14 @@ class BehaviorTest {
                 TIMEOUT
             )
 
-        Assert.assertEquals(changedText.text, "Number of results: 0")
+        Assert.assertEquals(changedText.text, TEST_NUMBER_OF_RESULTS_ZERO)
     }
 
     @Test
     fun test_DetailsShowsCounter() {
         val editText = uiDevice.findObject(By.res(packageName, "searchEditText"))
 
-        editText.text = "algol"
+        editText.text = TEST_EDITTEXT_ALGOL
 
         val search = uiDevice.findObject(By.res(packageName, "search_button"))
         search.click()
@@ -129,7 +132,7 @@ class BehaviorTest {
                 TIMEOUT
             )
 
-        Assert.assertEquals(changedText.text, "Number of results: 2424")
+        Assert.assertEquals(changedText.text, TEST_NUMBER_OF_RESULTS_ALGOL)
     }
 
     @Test
@@ -155,7 +158,7 @@ class BehaviorTest {
                 Until.findObject(By.res(packageName, "totalCountTextView")),
                 TIMEOUT
             )
-        Assert.assertEquals(changedText.text, "Number of results: 1")
+        Assert.assertEquals(changedText.text, TEST_NUMBER_OF_RESULTS_PLUS_1)
     }
 
     @Test
@@ -181,14 +184,14 @@ class BehaviorTest {
                 Until.findObject(By.res(packageName, "totalCountTextView")),
                 TIMEOUT
             )
-        Assert.assertNotEquals(changedText.text, "Number of results: 0")
+        Assert.assertNotEquals(changedText.text, TEST_NUMBER_OF_RESULTS_ZERO)
     }
 
     @Test
     fun test_DetailsBackPress() {
         val editText = uiDevice.findObject(By.res(packageName, "searchEditText"))
 
-        editText.text = "algol"
+        editText.text = TEST_EDITTEXT_ALGOL
 
         val search = uiDevice.findObject(By.res(packageName, "search_button"))
         search.click()
@@ -215,13 +218,13 @@ class BehaviorTest {
                 TIMEOUT
             )
 
-        Assert.assertEquals(changedText.text, "Number of results: 2424")
+        Assert.assertEquals(changedText.text, TEST_NUMBER_OF_RESULTS_ALGOL)
 
         uiDevice.pressBack()
 
-        Assert.assertEquals(totalCountText.text, "Number of results: 2424")
+        Assert.assertEquals(totalCountText.text, TEST_NUMBER_OF_RESULTS_ALGOL)
 
-        Assert.assertEquals(editText.text, "algol")
+        Assert.assertEquals(editText.text, TEST_EDITTEXT_ALGOL)
 
     }
 
